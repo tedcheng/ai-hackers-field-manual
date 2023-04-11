@@ -27,8 +27,11 @@ Common pattners used in applications. Each pattern will include walk-throughs, c
 🚧 Under Construction
 ### Chain of thought
 🚧 Under Construction
-### "AutoGPT" Agent
-🚧 Under Construction
+### "BabyAGI" Agent
+AutoGPT & BabyAGI are examples of agents, given a set objective, that can autonomously come up, prioritize and execute tasks. Original projects: [AutoGPT](https://github.com/Torantulino/Auto-GPT), [BabyAGI](https://github.com/yoheinakajima/babyagi). 
+
+Here we included a barebone implementation of BabyAGI with less than 100 lines of ruby. 
+
 ### ChatGPT Plugin
 🚧 Under Construction
 
