@@ -9,15 +9,14 @@ class SerpAPITool
   
   def process_response(res)
     raise "Got error from SerpAPI: #{res[:error]}" if res.key?(:error)
-    
-    res.try(:[], :answer_box).try(:[], :answer) ||
-    res.try(:[], :answer_box).try(:[], :snippet) ||
-    res.try(:[], :answer_box).try(:[], :snippet_highlighted_words)&.first ||
-    res.try(:[], :sports_results).try(:[], :game_spotlight) ||
-    res.try(:[], :knowledge_graph).try(:[], :description) ||
-    res.try(:[], :organic_results).try(:[], 0).try(:[], :snippet) ||
+    res&.dig(:answer_box, :answer) ||
+    res&.dig(:answer_box, :snippet) ||
+    res&.dig(:answer_box, :snippet_highlighted_words)&.first ||
+    res&.dig(:sports_results, :game_spotlight) ||
+    res&.dig(:knowledge_graph, :description) ||
+    res&.dig(:organic_results, 0, :snippet) ||
     'No good search result found'
-  end  
+  end
 
   def use(input_text)
     res = GoogleSearch.new({q: input_text, serp_api_key: ENV['SERPAPI_API_KEY']}).get_hash
