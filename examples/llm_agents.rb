@@ -20,7 +20,7 @@ class SerpAPITool
   end  
 
   def use(input_text)
-    res = GoogleSearch.new({q: query, serp_api_key: ENV['SERPAPI_API_KEY']}).get_hash
+    res = GoogleSearch.new({q: input_text, serp_api_key: ENV['SERPAPI_API_KEY']}).get_hash
     process_response(res)
   end
 end
