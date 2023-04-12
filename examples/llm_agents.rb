@@ -3,45 +3,39 @@ require 'openai'
 require 'google_search_results'
 require 'debug'
 
-def search(query)
-  search = GoogleSearch.new({q: query, serp_api_key: ENV['SERPAPI_API_KEY']})
-  res = search.get_hash
-
-  process_response(res)
-end
-
-def process_response(res)
-  if res.key?(:error)
-    raise "Got error from SerpAPI: #{res[:error]}"
-  elsif res.key?(:answer_box)
-    if res[:answer_box].key?(:answer)
-      toret = res[:answer_box][:answer]
-    elsif res[:answer_box].key?(:snippet)
-      toret = res[:answer_box][:snippet]
-    elsif res[:answer_box].key?(:snippet_highlighted_words)
-      toret = res[:answer_box][:snippet_highlighted_words][0]
-    end
-  elsif res.key?(:sports_results) && res[:sports_results].key?(:game_spotlight)
-    toret = res[:sports_results][:game_spotlight]
-  elsif res.key?(:knowledge_graph) && res[:knowledge_graph].key?(:description)
-    toret = res[:knowledge_graph][:description]
-  elsif res[:organic_results][0].key?(:snippet)
-    toret = res[:organic_results][0][:snippet]
-  else
-    toret = 'No good search result found'
-  end
-  toret
-end
-
 class SerpAPITool
   attr_accessor :name, :description
   def initialize
     @name = 'Google Search'
     @description = 'Get specific information from a search query. Input should be a question like \'How to add number in Clojure?\'. Result will be the answer to the question.'
   end
+  
+  def process_response(res)
+    if res.key?(:error)
+      raise "Got error from SerpAPI: #{res[:error]}"
+    elsif res.key?(:answer_box)
+      if res[:answer_box].key?(:answer)
+        toret = res[:answer_box][:answer]
+      elsif res[:answer_box].key?(:snippet)
+        toret = res[:answer_box][:snippet]
+      elsif res[:answer_box].key?(:snippet_highlighted_words)
+        toret = res[:answer_box][:snippet_highlighted_words][0]
+      end
+    elsif res.key?(:sports_results) && res[:sports_results].key?(:game_spotlight)
+      toret = res[:sports_results][:game_spotlight]
+    elsif res.key?(:knowledge_graph) && res[:knowledge_graph].key?(:description)
+      toret = res[:knowledge_graph][:description]
+    elsif res[:organic_results][0].key?(:snippet)
+      toret = res[:organic_results][0][:snippet]
+    else
+      toret = 'No good search result found'
+    end
+    toret
+  end  
 
   def use(input_text)
-    search(input_text)
+    res = GoogleSearch.new({q: query, serp_api_key: ENV['SERPAPI_API_KEY']}).get_hash
+    process_response(res)
   end
 end
 
@@ -54,34 +48,24 @@ class RubyREPLTool
     @name = 'Ruby REPL'
     @description = 'A Ruby shell. Use this to execute Ruby commands. Input should be a valid Ruby command. If you want to see the output of a value, you should print it out with `puts(...)`.'
   end
-
-  def safer_eval(expression)
+  
+  def use(command)
     result = nil
     Thread.start {
       $SAFE = 2
-      result = eval(expression)
+      result = eval(command)
     }.join
     result
-  end
-  
-  def use(command)
-    safer_eval(command)
   end
 end
 
 class ChatLLM
-  def initialize
-    @model = 'gpt-3.5-turbo'
-    @temperature = 0.0
-    @client = OpenAI::Client.new(access_token: ENV['OPENAI_API_KEY'])
-  end
-
   def generate(prompt, stop = nil)
-    response = @client.chat(
+    response = OpenAI::Client.new(access_token: ENV['OPENAI_API_KEY']).chat(
       parameters: {
-        model: @model,
+        model: 'gpt-3.5-turbo',
         messages: [{ "role" => "user", "content" => prompt }],
-        temperature: @temperature,
+        temperature: 0.0,
         stop: stop        
       }
     )
@@ -188,7 +172,6 @@ end
 print "Enter a question / task for the agent: "
 prompt = gets.chomp
 
-agent = Agent.new(ChatLLM.new, [RubyREPLTool.new, SerpAPITool.new])
-result = agent.run(prompt)
+result = Agent.new(ChatLLM.new, [RubyREPLTool.new, SerpAPITool.new]).run(prompt)
 
 puts "Final answer is #{result}"
