@@ -1,27 +1,22 @@
-require 'date'
 require 'openai'
 require 'google_search_results'
-require 'debug'
 
 class SerpAPITool
   attr_accessor :name, :description
   def initialize
-    @name = 'Google Search'
-    @description = 'Get specific information from a search query. Input should be a question like \'How to add number in Clojure?\'. Result will be the answer to the question.'
+    @name, @description = 'Google Search', 'Get specific information from a search query. Input should be a question like \'How to add number in Clojure?\'. Result will be the answer to the question.'
   end
   
   def process_response(res)
-    if res.key?(:error)
-      raise "Got error from SerpAPI: #{res[:error]}"
-    else
-      res.try(:[], :answer_box).try(:[], :answer) ||
-      res.try(:[], :answer_box).try(:[], :snippet) ||
-      res.try(:[], :answer_box).try(:[], :snippet_highlighted_words)&.first ||
-      res.try(:[], :sports_results).try(:[], :game_spotlight) ||
-      res.try(:[], :knowledge_graph).try(:[], :description) ||
-      res.try(:[], :organic_results).try(:[], 0).try(:[], :snippet) ||
-      'No good search result found'
-    end
+    raise "Got error from SerpAPI: #{res[:error]}" if res.key?(:error)
+    
+    res.try(:[], :answer_box).try(:[], :answer) ||
+    res.try(:[], :answer_box).try(:[], :snippet) ||
+    res.try(:[], :answer_box).try(:[], :snippet_highlighted_words)&.first ||
+    res.try(:[], :sports_results).try(:[], :game_spotlight) ||
+    res.try(:[], :knowledge_graph).try(:[], :description) ||
+    res.try(:[], :organic_results).try(:[], 0).try(:[], :snippet) ||
+    'No good search result found'
   end  
 
   def use(input_text)
@@ -36,8 +31,7 @@ end
 class RubyREPLTool
   attr_accessor :name, :description
   def initialize
-    @name = 'Ruby REPL'
-    @description = 'A Ruby shell. Use this to execute Ruby commands. Input should be a valid Ruby command. If you want to see the output of a value, you should print it out with `puts(...)`.'
+    @name, @description = 'Ruby REPL', 'A Ruby shell. Use this to execute Ruby commands. Input should be a valid Ruby command. If you want to see the output of a value, you should print it out with `puts(...)`.'
   end
   
   def use(command)
@@ -55,8 +49,8 @@ class ChatLLM
     response = OpenAI::Client.new(access_token: ENV['OPENAI_API_KEY']).chat(
       parameters: {
         model: 'gpt-3.5-turbo',
-        messages: [{ "role" => "user", "content" => prompt }],
         temperature: 0.0,
+        messages: [{ "role" => "user", "content" => prompt }],
         stop: stop        
       }
     )
@@ -89,14 +83,10 @@ class Agent
     Question: %{question}
     Thought: %{previous_responses}
   PROMPT
-
-  attr_accessor :llm, :tools, :prompt_template, :max_loops, :stop_pattern
+  MAX_LOOPS = 15
+  attr_accessor :llm, :tools
   def initialize(llm, tools)
-    @llm = llm
-    @tools = tools
-    @prompt_template = PROMPT_TEMPLATE
-    @max_loops = 15
-    @stop_pattern = ["\n#{OBSERVATION_TOKEN}", "\n\t#{OBSERVATION_TOKEN}"]
+    @llm, @tools = llm, tools
   end
 
   def tool_description
@@ -114,24 +104,20 @@ class Agent
   def run(question)
     previous_responses = []
     num_loops = 0
-    prompt = prompt_template % {
-        today: Date.today,
+    prompt = PROMPT_TEMPLATE % {
+        today: Time.now.strftime("%Y-%m-%d"),
         tool_description: tool_description,
         tool_names: tool_names,
         question: question,
         previous_responses: "%{previous_responses}"
     }
     puts prompt % { previous_responses: '' }
-    while num_loops < max_loops
+    while num_loops < MAX_LOOPS
       num_loops += 1
       curr_prompt = prompt % { previous_responses: previous_responses.join("\n") }
       generated, tool, tool_input = decide_next_action(curr_prompt)
-      if tool == 'Final Answer'
-        return tool_input
-      end
-      if !tool_by_names.has_key?(tool)
-        raise ArgumentError, "Unknown tool: #{tool}"
-      end
+      return tool_input if tool == 'Final Answer'
+      raise ArgumentError, "Unknown tool: #{tool}" if !tool_by_names.has_key?(tool)
       tool_result = tool_by_names[tool].use(tool_input)
       generated += "\n#{OBSERVATION_TOKEN} #{tool_result}\n#{THOUGHT_TOKEN}"
       puts generated
@@ -140,6 +126,7 @@ class Agent
   end
 
   def decide_next_action(prompt)
+    stop_pattern = ["\n#{OBSERVATION_TOKEN}", "\n\t#{OBSERVATION_TOKEN}"]
     generated = llm.generate(prompt, stop_pattern)
     tool, tool_input = parse(generated)
     return generated, tool, tool_input
@@ -151,18 +138,15 @@ class Agent
     end
     regex = /Action: [\[]?(.*?)[\]]?[\n]*Action Input:[\s]*(.*)/m
     match = generated.match(regex)
-    if match.nil?
-      raise ArgumentError, "Output of LLM is not parsable for next tool use: `#{generated}`"
-    end
+    raise ArgumentError, "Output of LLM is not parsable for next tool use: `#{generated}`" if match.nil?
     tool = match[1].strip
     tool_input = match[2].strip.gsub(/(^"|"$)/, "")
     return tool, tool_input
   end
 end
 
+# Startup code
 print "Enter a question / task for the agent: "
 prompt = gets.chomp
-
 result = Agent.new(ChatLLM.new, [RubyREPLTool.new, SerpAPITool.new]).run(prompt)
-
 puts "Final answer is #{result}"
