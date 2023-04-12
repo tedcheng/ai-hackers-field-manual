@@ -13,24 +13,15 @@ class SerpAPITool
   def process_response(res)
     if res.key?(:error)
       raise "Got error from SerpAPI: #{res[:error]}"
-    elsif res.key?(:answer_box)
-      if res[:answer_box].key?(:answer)
-        toret = res[:answer_box][:answer]
-      elsif res[:answer_box].key?(:snippet)
-        toret = res[:answer_box][:snippet]
-      elsif res[:answer_box].key?(:snippet_highlighted_words)
-        toret = res[:answer_box][:snippet_highlighted_words][0]
-      end
-    elsif res.key?(:sports_results) && res[:sports_results].key?(:game_spotlight)
-      toret = res[:sports_results][:game_spotlight]
-    elsif res.key?(:knowledge_graph) && res[:knowledge_graph].key?(:description)
-      toret = res[:knowledge_graph][:description]
-    elsif res[:organic_results][0].key?(:snippet)
-      toret = res[:organic_results][0][:snippet]
     else
-      toret = 'No good search result found'
+      res.try(:[], :answer_box).try(:[], :answer) ||
+      res.try(:[], :answer_box).try(:[], :snippet) ||
+      res.try(:[], :answer_box).try(:[], :snippet_highlighted_words)&.first ||
+      res.try(:[], :sports_results).try(:[], :game_spotlight) ||
+      res.try(:[], :knowledge_graph).try(:[], :description) ||
+      res.try(:[], :organic_results).try(:[], 0).try(:[], :snippet) ||
+      'No good search result found'
     end
-    toret
   end  
 
   def use(input_text)
