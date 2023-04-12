@@ -23,16 +23,15 @@ Common tools you will come across as you explore projects built in the community
 
 ## Application Patterns and Examples <a name="patterns"></a>
 Common pattners used in applications. Each pattern will include walk-throughs, community projects, and a super barebone implementation example for learning and clarity. More complex examples will be added over time. 
-### Semantic Search and Q&A Bots
-🚧 Under Construction
-### Chain of thought
-🚧 Under Construction
-### "BabyAGI" Agent
-AutoGPT & BabyAGI are examples of agents, given a set objective, that can autonomously come up, prioritize and execute tasks. Original projects: [AutoGPT](https://github.com/Torantulino/Auto-GPT), [BabyAGI](https://github.com/yoheinakajima/babyagi). 
+### LLM driven agents with tools
+This is a pattern popularized by AutoGPT & BabyAGI projects ([AutoGPT](https://github.com/Torantulino/Auto-GPT), [BabyAGI](https://github.com/yoheinakajima/babyagi)). With this pattern, an agent is given a set of tools and is tasked to complete a goal. In each step, the agent uses LLM to iteratively decide which tool to use and solves the problem. 
 
-Here we included a barebone implementation of BabyAGI with less than 100 lines of ruby. 
+Here we included a barebone implementation with less than [150 lines of ruby](examples/llm_agents.rb).
 
 ### ChatGPT Plugin
+🚧 Under Construction
+
+### Semantic Search and Q&A Bots
 🚧 Under Construction
 
 ## Current State of Models + Training <a name="models"></a>
