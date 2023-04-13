@@ -1,3 +1,7 @@
+# You need to set two ENV variables: OPENAI_API_KEY and SERPAPI_API_KEY. 
+# You can get an OpenAI API key from https://openai.com/ and a SerpAPI API key from https://serpapi.com/.
+# You can run this file with `ruby examples/llm_agents.rb` or `bundle exec ruby examples/llm_agents.rb`.
+
 require 'openai'
 require 'google_search_results'
 
