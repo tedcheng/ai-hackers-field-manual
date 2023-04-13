@@ -26,7 +26,7 @@ Common pattners used in applications. Each pattern will include walk-throughs, c
 ### AutoGPT Agent From Scratch
 This is a pattern popularized by AutoGPT & BabyAGI projects. With this pattern, an agent is given a set of tools and is tasked to complete a goal. In each step, the agent uses LLM to iteratively decide which tool to use and solves the problem. 
 
-Inspired by [LLM Agents](https://github.com/mpaepper/llm_agents/tree/main/llm_agents), here's is a built-from-scratch version in less than [150 lines of ruby](examples/llm_agents.rb) that implements a Thought, Action, Observation, Thought loop agent with access to Google Search and Ruby REPL. 
+Inspired by [LLM Agents](https://github.com/mpaepper/llm_agents/tree/main/llm_agents), here's is a built-from-scratch version in less than [150 lines of ruby](examples/llm_agents/llm_agents.rb) that implements a Thought, Action, Observation, Thought loop agent with access to Google Search and Ruby REPL. 
 
 ### ChatGPT Plugin
 🚧 Under Construction
