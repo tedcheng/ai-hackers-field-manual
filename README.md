@@ -12,19 +12,23 @@ Common tools you will come across as you explore projects built in the community
 - [Next.js](https://nextjs.org/docs) - A popular Javascript framework, often used with Vercel. 
 - [Vercel](https://vercel.com) - A cloud platform specialized in hosting Next.js apps. 
 - [Tailwindcss](https://tailwindcss.com/docs) - A utility-first CSS framework, which means you will define styling directly with pre-built css classes. 
-- [Pinecone](https://www.pinecone.io/docs) - A vector database for AI applications. This is commonly used to store embeddings of data and enable similarity based search (More on this in Q&A bots). Alternatively, you can also use [Supabase](https://supabase.com/), [Milvus](https://milvus.io/), [Faiss](https://github.com/facebookresearch/faiss), [Chroma](https://www.trychroma.com/) and [Weaviate](https://weaviate.io/) and others.
+- [Pinecone](https://www.pinecone.io/docs) - A vector database for AI applications. This is commonly used to store embeddings of data and enable similarity based search (More on this in Q&A bots). Alternatively, you can also use [Milvus](https://milvus.io/), [Faiss](https://github.com/facebookresearch/faiss), [Chroma](https://www.trychroma.com/) and [Weaviate](https://weaviate.io/) and others.
+- [Supabase](https://supabase.com/) - A popular PostgresQL as a service vendor. Works well with NextJS and offers Authentication and storage APIs out of the box. Also has support for storing embeddings (using a Postgres plugin - pgvector) and files.
 - [LlamaIndex](https://github.com/jerryjliu/llama_index) - A library that provides an interface between LLMs and external data by handling data connectors, building indices and querying (eg. including managing prompt token size, etc.)
 - [LangChain](https://github.com/hwchase17/langchain) - A library that helps you build LLM based complex action chains and agents. 
 - [OpenAI API](https://platform.openai.com/docs/api-reference) - Currently the state of the art models. Commonly used APIs include:
   - Whisper - Audio to text. This is also open-sourced, so you can run your own service. 
   - Embedding - Generate high dimensional representation based on text and can be used for semantic search. 
   - Text completions and chat completions - The API behind ChatGPT. Multiple models exist. gpt-4 is the state of art, but general use cases can be done on gpt-3.5-turbo (cheaper and faster).
-  - DALLE - Text to image. 
+  - DALLE - Text to image.
+- HuggingFace - the github for AI models, a platform to build, deploy and share models across the community. An alternative to OpenAI models.s
 
 ## Application Patterns and Examples <a name="patterns"></a>
 Common pattners used in applications. Each pattern will include walk-throughs, community projects, and a super barebone implementation example for learning and clarity. More complex examples will be added over time. 
 ### AutoGPT Agent From Scratch
 This is a pattern popularized by AutoGPT & BabyAGI projects. With this pattern, an agent is given a set of tools and is tasked to complete a goal. In each step, the agent uses LLM to iteratively decide which tool to use and solves the problem. 
+
+[Microsoft's Jarvis](https://github.com/microsoft/JARVIS) and [Google's Palm](https://blog.google/technology/ai/introducing-pathways-next-generation-ai-architecture/) are two examples of building AI agents in this manner.
 
 Inspired by [LLM Agents](https://github.com/mpaepper/llm_agents/tree/main/llm_agents), here's is a built-from-scratch version in less than [150 lines of ruby](examples/llm_agents/llm_agents.rb) that implements a Thought, Action, Observation, Thought loop agent with access to Google Search and Ruby REPL. 
 
