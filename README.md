@@ -34,6 +34,7 @@ Inspired by [LLM Agents](https://github.com/mpaepper/llm_agents/tree/main/llm_ag
 
 ### ChatGPT Plugin
 OpenAI actually has very detailed [documentation](https://platform.openai.com/docs/plugins/introduction) on how to setup a plugin. Here's an [example](examples/plugin/app.py) app. 
+
 https://user-images.githubusercontent.com/4744549/232258973-381ca2b9-8fac-4bc9-8411-74b31a2908d5.mov
 
 Some tips:
