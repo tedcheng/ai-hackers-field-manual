@@ -21,7 +21,7 @@ Common tools you will come across as you explore projects built in the community
   - Embedding - Generate high dimensional representation based on text and can be used for semantic search. 
   - Text completions and chat completions - The API behind ChatGPT. Multiple models exist. gpt-4 is the state of art, but general use cases can be done on gpt-3.5-turbo (cheaper and faster).
   - DALLE - Text to image.
-- HuggingFace - the github for AI models, a platform to build, deploy and share models across the community. An alternative to OpenAI models.s
+- [HuggingFace](https://huggingface.co/) - the github for AI models, a platform to build, deploy and share models across the community. An alternative to OpenAI models.s
 
 ## Application Patterns and Examples <a name="patterns"></a>
 Common pattners used in applications. Each pattern will include walk-throughs, community projects, and a super barebone implementation example for learning and clarity. More complex examples will be added over time. 
