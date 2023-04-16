@@ -35,7 +35,7 @@ Inspired by [LLM Agents](https://github.com/mpaepper/llm_agents/tree/main/llm_ag
 ### ChatGPT Plugin
 OpenAI actually has very detailed [documentation](https://platform.openai.com/docs/plugins/introduction) on how to setup a plugin. Here's an [example](examples/plugin/app.py) app. 
 
-https://user-images.githubusercontent.com/4744549/232258973-381ca2b9-8fac-4bc9-8411-74b31a2908d5.mov
+https://user-images.githubusercontent.com/4744549/232259194-c6346ce2-fd8a-4288-937a-9f53245f9adf.mov
 
 Some tips:
 - At a high level, a plugin is just an API endpoint that ChatGPT can call. Setting up a plugin requires 3 parts: 1). your api endpoint, 2). a manifest file describing your plugin, and 3). a yaml file describing your endpoint(s). See more details in the [example](examples/plugin/app.py) app. 
