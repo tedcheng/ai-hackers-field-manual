@@ -13,7 +13,7 @@ ai_plugin_data = {
     },
     "api": {
         "type": "openapi",
-        "url": "http://localhost:4444/openapi.yaml",
+        "url": "https://bart-plugin.onrender.com/openapi.yaml",
         "is_user_authenticated": False
     },
     "logo_url": "https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/0016/4231/brand.gif?itok=cOeuUIp-",
@@ -28,7 +28,7 @@ info:
   description: A plugin that allows the user to get real-time BART information for a specified origination station and direction using ChatGPT.
   version: 'v1'
 servers:
-  - url: http://localhost:4444
+  - url: https://bart-plugin.onrender.com
 paths:
   /bart/realtime:
     get:
