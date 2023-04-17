@@ -8,12 +8,12 @@ This is a community effort; please open PRs to add information!
 ## Application Patterns and Examples <a name="patterns"></a>
 | Name          | Example Description                      | Community Projects        |
 |---------------|------------------------------------------|---------------------------|
-| [LLM Agent](examples/llm_agents/llm_agents.rb)      | This is a pattern popularized by AutoGPT & BabyAGI projects. With this pattern, an agent is given a set of tools and is tasked to complete a goal. In each step, the agent uses LLM to iteratively decide which tool to use and solves the problem. Inspired by [LLM Agents](https://github.com/mpaepper/llm_agents/tree/main/llm_agents), here's is a built-from-scratch version in less than [150 lines of ruby] that implements a Thought, Action, Observation, Thought loop agent with access to Google Search and Ruby REPL.  |  |
-| ChatGPT Plugin    | A plugin looking up real time Bart schedule         |             |
+| [LLM Agent](examples/llm_agents)      | This is a pattern popularized by AutoGPT & BabyAGI projects. With this pattern, an agent is given a set of tools and is tasked to complete a goal. In each step, the agent uses LLM to iteratively decide which tool to use and solves the problem. Inspired by [LLM Agents](https://github.com/mpaepper/llm_agents/tree/main/llm_agents), here's is a built-from-scratch version in less than [150 lines of ruby] that implements a Thought, Action, Observation, Thought loop agent with access to Google Search and Ruby REPL.  |[Microsoft's Jarvis](https://github.com/microsoft/JARVIS) [Google's Palm](https://blog.google/technology/ai/introducing-pathways-next-generation-ai-architecture/)|
+| [ChatGPT Plugin](examples/plugin)    | A plugin looking up real time Bart schedule         |             |
 
  
 
-<!-- [Microsoft's Jarvis](https://github.com/microsoft/JARVIS) and [Google's Palm](https://blog.google/technology/ai/introducing-pathways-next-generation-ai-architecture/) are two examples of building AI agents in this manner. -->
+<!--  and  are two examples of building AI agents in this manner. -->
 
 ### ChatGPT Plugin
 OpenAI actually has very detailed [documentation](https://platform.openai.com/docs/plugins/introduction) on how to setup a plugin. Here's an [example](examples/plugin/app.py) app. 
