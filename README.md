@@ -1,7 +1,5 @@
 # AI Hackers' Field Manual
-[[Patterns]](#patterns) [[Tools]](#tools) [[Models]](#models) <!--[[Prompt]](#prompt) [[Infra products]](#infra) [[Research]](#research) --> [[Papers]](#papers)
-
-📚 Collections of common application patterns, tools, models, and research papers for building AI applications. 🔍
+📚 Collections of common [[application patterns]](#patterns), [[tools]](#tools), [[models]](#models), and [[research papers]](#papers) for building AI applications. 🔍
 
 🔥 New applications and content updated every week! 📅
 
