@@ -1,9 +1,9 @@
 # AI Hackers' Field Manual
-[[Patterns]](#patterns) [[Toolbox]](#toolbox) [[Models]](#models) <!--[[Prompt]](#prompt) [[Infra products]](#infra) [[Research]](#research) --> [[More Resources]](#resources)
+[[Patterns]](#patterns) [[Tools]](#tools) [[Models]](#models) <!--[[Prompt]](#prompt) [[Infra products]](#infra) [[Research]](#research) --> [[Papers]](#papers)
 
-The AI hackers community has been moving at neck breaking pace and often one can feel lost and overwhelmed with ever-increasing number of new tools. Focusing on clarity and brevity, this guide is created to help you get started hacking and serve as a springboard for further explorations! 
+Collections of application patterns, tools, models and reserach papers for building AI applications.
 
-This is a community effort; please open PRs to add information! 
+🔥 New applications and content updated every week. 
 
 ## Application Patterns and Examples <a name="patterns"></a>
 | Name          | Example Description                      | Community Projects        |
@@ -12,7 +12,7 @@ This is a community effort; please open PRs to add information!
 | [ChatGPT Plugin](examples/plugin)    | A plugin looking up real time Bart schedule         |             |
 | Semantic Search and Q&A Bots    | 🚧 Under Construction         |             |
 
-## Toolbox <a name="toolbox"></a>
+## Tools <a name="tools"></a>
 Common tools you will come across as you explore projects built in the community. Some of these tools and frameworks may not be specific to LLM use cases, but have become the default choice of the community. Feel free to use other tools you like but it's good to generally know these. 
 
 - [Flask](https://flask.palletsprojects.com/en/2.1.x/) - A lightweight web framework for Python. Since Python is the language of AI, you might as well use a web framework in Python. Another common option is [FastAPI](https://fastapi.tiangolo.com/).
@@ -42,5 +42,5 @@ Common tools you will come across as you explore projects built in the community
 ## Current State of Models + Training <a name="models"></a>
 🚧 Under Construction
 
-## More Resources <a name="resources"></a>
+## Key research papers <a name="papers"></a>
 🚧 Under Construction
