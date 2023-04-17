@@ -6,6 +6,8 @@
 
 
 ## Application Patterns and Examples <a name="patterns"></a>
+Have ideas for other patterns? Open an PR and create a new folder under examples. Or simply open an issue and we can discuss it. 
+
 | Name          | Example Description                      | Community Projects        |
 |---------------|------------------------------------------|---------------------------|
 | [LLM Agent](examples/llm_agents) | Thought, Action, Observation Agent built from scratch | [Microsoft's Jarvis](https://github.com/microsoft/JARVIS), [Google's Palm](https://blog.google/technology/ai/introducing-pathways-next-generation-ai-architecture/), [AutoGPT](https://github.com/Significant-Gravitas/Auto-GPT)|
@@ -13,7 +15,7 @@
 | Semantic Search and Q&A Bots | 🚧 Under Construction | |
 
 ## Tools <a name="tools"></a>
-Common tools you will come across as you explore projects built in the community. Some of these tools and frameworks may not be specific to LLM use cases, but have become the default choice of the community. Feel free to use other tools you like but it's good to generally know these. 
+Common tools you will come across as you explore projects built in the community. 
 
 | Name | Description |
 |------|-------------|
