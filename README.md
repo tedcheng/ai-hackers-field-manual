@@ -29,9 +29,6 @@ Some tips:
 ### Semantic Search and Q&A Bots
 🚧 Under Construction
 
-## Current State of Models + Training <a name="models"></a>
-🚧 Under Construction
-
 ## Toolbox <a name="toolbox"></a>
 Common tools you will come across as you explore projects built in the community. Some of these tools and frameworks may not be specific to LLM use cases, but have become the default choice of the community. Feel free to use other tools you like but it's good to generally know these. 
 
@@ -50,7 +47,6 @@ Common tools you will come across as you explore projects built in the community
   - DALLE - Text to image.
 - [HuggingFace](https://huggingface.co/) - the github for AI models, a platform to build, deploy and share models across the community. An alternative to OpenAI models.
 
-
 <!-- ## Prompt engineering, techniques and templates <a name="prompt"></a>
 🚧 Under Construction
 
@@ -59,6 +55,9 @@ Common tools you will come across as you explore projects built in the community
 
 ## Research + Papers <a name="research"></a>
 🚧 Under Construction -->
+
+## Current State of Models + Training <a name="models"></a>
+🚧 Under Construction
 
 ## More Resources <a name="resources"></a>
 🚧 Under Construction
