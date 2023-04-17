@@ -8,27 +8,9 @@ This is a community effort; please open PRs to add information!
 ## Application Patterns and Examples <a name="patterns"></a>
 | Name          | Example Description                      | Community Projects        |
 |---------------|------------------------------------------|---------------------------|
-| [LLM Agent](examples/llm_agents)      | This is a pattern popularized by AutoGPT & BabyAGI projects. With this pattern, an agent is given a set of tools and is tasked to complete a goal. In each step, the agent uses LLM to iteratively decide which tool to use and solves the problem. Inspired by [LLM Agents](https://github.com/mpaepper/llm_agents/tree/main/llm_agents), here's is a built-from-scratch version in less than [150 lines of ruby] that implements a Thought, Action, Observation, Thought loop agent with access to Google Search and Ruby REPL.  |[Microsoft's Jarvis](https://github.com/microsoft/JARVIS) [Google's Palm](https://blog.google/technology/ai/introducing-pathways-next-generation-ai-architecture/)|
+| [LLM Agent](examples/llm_agents)      | Thought, Action, Observation Agent built from scratch |[Microsoft's Jarvis](https://github.com/microsoft/JARVIS) [Google's Palm](https://blog.google/technology/ai/introducing-pathways-next-generation-ai-architecture/)|
 | [ChatGPT Plugin](examples/plugin)    | A plugin looking up real time Bart schedule         |             |
-
- 
-
-<!--  and  are two examples of building AI agents in this manner. -->
-
-### ChatGPT Plugin
-OpenAI actually has very detailed [documentation](https://platform.openai.com/docs/plugins/introduction) on how to setup a plugin. Here's an [example](examples/plugin/app.py) app. 
-
-https://user-images.githubusercontent.com/4744549/232259194-c6346ce2-fd8a-4288-937a-9f53245f9adf.mov
-
-Some tips:
-- At a high level, a plugin is just an API endpoint that ChatGPT can call. Setting up a plugin requires 3 parts: 1). your api endpoint, 2). a manifest file describing your plugin, and 3). a yaml file describing your endpoint(s). See more details in the [example](examples/plugin/app.py) app. 
-- Setting up plugins to run locally may be a bit tricky. Make sure you are setting CORS correctly and explicitly setting a port number. For some reason, the default port number didn't work for me. 
-- Make sure your /.well-known/ai-plugin.json and openai.yaml endpoints return with 200 and don't invole any redirects. OpenAI will not follow through the redirects.
-- You can use chatgpt to write the manifest files for you. Just give it an example and describe the input and output. It will generate the manifest file scafolidng for you.
-- Regarding prompts in the manifest, start with something simple and build on it. You don't need to overthink it in V1. 
-
-### Semantic Search and Q&A Bots
-🚧 Under Construction
+| Semantic Search and Q&A Bots    | 🚧 Under Construction         |             |
 
 ## Toolbox <a name="toolbox"></a>
 Common tools you will come across as you explore projects built in the community. Some of these tools and frameworks may not be specific to LLM use cases, but have become the default choice of the community. Feel free to use other tools you like but it's good to generally know these. 
