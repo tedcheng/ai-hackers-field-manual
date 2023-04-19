@@ -30,6 +30,7 @@ Common tools you will come across as you explore projects built in the community
 | [OpenAI API](https://platform.openai.com/docs/api-reference) | API | Currently the state of the art models. Commonly used APIs include: <ul><li>Whisper - Audio to text. This is also open-sourced, so you can run your own service.</li><li>Embedding - Generate high dimensional representation based on text and can be used for semantic search.</li><li>Text completions and chat completions - The API behind ChatGPT. Multiple models exist. gpt-4 is the state of art, but general use cases can be done on gpt-3.5-turbo (cheaper and faster).</li><li>DALLE - Text to image.</li></ul> |
 | [HuggingFace](https://huggingface.co/) | Infra & Hosting | The GitHub for AI models, a platform to build, deploy, and share models across the community. An alternative to OpenAI models. |
 | [ElevenLabs](https://beta.elevenlabs.io/) | API | AI text to speech API. Voice cloning. |
+| [Replicate](https://replicate.com/) | API | Run open-source machine learning models with a cloud API. |
 
 ## Current State of Models + Training <a name="models"></a>
 
