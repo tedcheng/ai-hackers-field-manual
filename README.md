@@ -32,7 +32,6 @@ Common tools you will come across as you explore projects built in the community
 | [ElevenLabs](https://beta.elevenlabs.io/) | API | AI text to speech API. Voice cloning. |
 
 ## Current State of Models + Training <a name="models"></a>
-🚧 Under Construction
 
 ## Key research papers <a name="papers"></a>
 🚧 Under Construction
