@@ -12,7 +12,12 @@ Some tips:
 - Regarding prompts in the manifest, start with something simple and build on it. You don't need to overthink it in V1. 
 
 ## Chaining Calls
+🚧 Under Construction
+
 
 ## Flexible Endpoints
+🚧 Under Construction
+
 
 ## Memory
+🚧 Under Construction
