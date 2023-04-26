@@ -38,6 +38,7 @@ A list of the more "hackable" models and how to work with them.
 | Name | Description | Size | Data | OSS & License | How to work with it |
 |------|-------------|------|------|---------------|---------------------|
 | LLaMA | Foundational 65B LLM from Meta AI | 65B |  | Yes (Research only) | [Hosting](https://github.com/ggerganov/llama.cpp) |
+| Dolly 2.0 | Open source, instruction-following LLM | 12B | 15,000 high-quality human-generated prompt / response pairs | Yes (Commercial use friendly) |  |
 
 ## Key research papers <a name="papers"></a>
 🚧 Under Construction
