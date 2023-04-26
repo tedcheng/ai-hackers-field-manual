@@ -32,7 +32,12 @@ Common tools you will come across as you explore projects built in the community
 | [ElevenLabs](https://beta.elevenlabs.io/) | API | AI text to speech API. Voice cloning. |
 | [Replicate](https://replicate.com/) | API | Run open-source machine learning models with a cloud API. |
 
-## Current State of Models + Training <a name="models"></a>
+## Models <a name="models"></a>
+A list of the more "hackable" models and how to work with them. 
+
+| Name | Description | Size | Data | OSS & License | How to work with it |
+|------|-------------|------|------|---------------|---------------------|
+| LLaMA | Foundational 65B LLM from Meta AI | 65B |  | Yes (Research only) | [Hosting](https://github.com/ggerganov/llama.cpp) |
 
 ## Key research papers <a name="papers"></a>
 🚧 Under Construction
