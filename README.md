@@ -33,7 +33,7 @@ Common tools you will come across as you explore projects built in the community
 | [Replicate](https://replicate.com/) | API | Run open-source machine learning models with a cloud API. |
 
 ## Models <a name="models"></a>
-A list of the more "hackable" models and how to work with them. 
+A list of the more "hackable" open source models and how to work with them. 
 
 | Name | Description | Size | Data | OSS & License | How to work with it |
 |------|-------------|------|------|---------------|---------------------|
