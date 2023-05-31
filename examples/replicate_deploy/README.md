@@ -1,4 +1,4 @@
-# Deploy MPT-6B Model on Replicate
+# Deploy MPT-7B Model on Replicate
 ## Testing locally (on LamdaLabs instance)
 ```bash
 # Clone this repo and navigate to this example
