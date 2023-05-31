@@ -1,4 +1,10 @@
 # Deploy MPT-7B Model on Replicate
+## Download and prepare model weight (tensorizing weights will help save loading time)
+```bash
+chmod +x scripts/download_and_prepare_model.py
+python scripts/download_and_prepare_model.py --model_name mosaicml/mpt-7b-instruct --model_path model --tensorize --tensorizer_path model/mpt-7b-instruct.tensors
+```
+
 ## Testing locally (on LamdaLabs instance)
 ```bash
 # Clone this repo and navigate to this example
