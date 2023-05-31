@@ -19,6 +19,7 @@ build:
     - "transformers"
     - "einops"
     - "xformers"
+    - "accelerate"
 
   # commands run after the environment is setup
   # run:
