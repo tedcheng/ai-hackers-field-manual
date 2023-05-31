@@ -18,6 +18,7 @@ build:
     - "torch"
     - "transformers"
     - "einops"
+    - "xformers"
 
   # commands run after the environment is setup
   # run:
