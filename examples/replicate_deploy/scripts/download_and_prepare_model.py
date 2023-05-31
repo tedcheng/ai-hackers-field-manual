@@ -106,4 +106,4 @@ if __name__ == "__main__":
     download_hf_model_and_copy_tokenizer(args.model_name, model_path=args.model_path, tokenizer_path=args.tokenizer_path)
 
     if args.tensorize:
-        model = tensorize_model(args.model_name, dtype=args.dtype, tensorizer_path=args.model_path, model_path=args.model_path)
+        model = tensorize_model(args.model_name, dtype=args.dtype, tensorizer_path=args.model_path, model_path=args.model_path) 
