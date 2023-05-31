@@ -49,7 +49,7 @@ def tensorize_model(
     logger.info(f"Loading {model_name} in {dtype} from {model_path}...")
 
     model = AutoModelForCausalLM.from_pretrained(
-        model_path, low_cpu_mem_usage=True
+        model_path, low_cpu_mem_usage=True, trust_remote_code=True
     ).to('cuda:0')
 
     logger.info(f"Tensorizing model {model_name} in {dtype} and writing tensors to {tensorizer_path}...")
