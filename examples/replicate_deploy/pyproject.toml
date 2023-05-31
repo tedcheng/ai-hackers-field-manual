@@ -10,6 +10,10 @@ packages = [{include = "replicate_deploy"}]
 python = "^3.10"
 replicate = "^0.8.3"
 python-dotenv = "^1.0.0"
+torch = "^2.0.1"
+huggingface-hub = "^0.14.1"
+tensorizer = "^1.1.0"
+transformers = "^4.29.2"
 
 
 [build-system]
