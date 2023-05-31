@@ -2,21 +2,49 @@
 # https://github.com/replicate/cog/blob/main/docs/python.md
 
 from cog import BasePredictor, Input, Path
-
+from torch import cuda, bfloat16
+import transformers
+import torch
+from transformers import StoppingCriteria, StoppingCriteriaList
 
 class Predictor(BasePredictor):
     def setup(self):
-        """Load the model into memory to make running multiple predictions efficient"""
-        # self.model = torch.load("./weights.pth")
+        device = f'cuda:{cuda.current_device()}' if cuda.is_available() else 'cpu'
 
-    def predict(
-        self,
-        image: Path = Input(description="Grayscale input image"),
-        scale: float = Input(
-            description="Factor to scale image by", ge=0, le=10, default=1.5
-        ),
-    ) -> Path:
-        """Run a single prediction on the model"""
-        # processed_input = preprocess(image)
-        # output = self.model(processed_image, scale)
-        # return postprocess(output)
+        self.model = transformers.AutoModelForCausalLM.from_pretrained(
+            'mosaicml/mpt-7b-instruct',
+            trust_remote_code=True,
+            torch_dtype=bfloat16,
+            max_seq_len=2048
+        )
+        self.model.eval()
+        self.model.to(device)
+        print(f"Model loaded on {device}")
+        self.tokenizer = transformers.AutoTokenizer.from_pretrained("EleutherAI/gpt-neox-20b")
+
+    def predict(self, prompt: str = Input(description="Prompt")) -> str:
+        # mtp-7b is trained to add "<|endoftext|>" at the end of generations
+        stop_token_ids = tokenizer.convert_tokens_to_ids(["<|endoftext|>"])
+        # define custom stopping criteria object
+        class StopOnTokens(StoppingCriteria):
+            def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor, **kwargs) -> bool:
+                for stop_id in stop_token_ids:
+                    if input_ids[0][-1] == stop_id:
+                        return True
+                return False
+        stopping_criteria = StoppingCriteriaList([StopOnTokens()])
+        
+        generate_text = transformers.pipeline(
+            model=self.model, tokenizer=self.tokenizer,
+            task='text-generation',
+            device=device,
+            # we pass model parameters here too
+            stopping_criteria=stopping_criteria,  # without this model will ramble
+            temperature=0.1,  # 'randomness' of outputs, 0.0 is the min and 1.0 the max
+            top_p=0.15,  # select from top tokens whose probability add up to 15%
+            top_k=0,  # select from top 0 tokens (because zero, relies on top_p)
+            max_new_tokens=64,  # mex number of tokens to generate in the output
+            repetition_penalty=1.1  # without this output begins repeating
+        )
+        res = generate_text(prompt)
+        return(res[0]["generated_text"])
