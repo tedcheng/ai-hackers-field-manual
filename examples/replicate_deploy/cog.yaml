@@ -22,7 +22,6 @@ build:
     - "accelerate"
     - "tensorizer"
     - "huggingface_hub"
-    - "tensorize_model"
 
   # commands run after the environment is setup
   # run:
