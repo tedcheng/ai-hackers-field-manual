@@ -12,6 +12,7 @@ Have ideas for other patterns? Open an PR and create a new folder under examples
 |---------------|------------------------------------------|---------------------------|
 | [LLM Agent](examples/llm_agents) | Thought, Action, Observation Agent built from scratch | [Microsoft's Jarvis](https://github.com/microsoft/JARVIS), [Google's Palm](https://blog.google/technology/ai/introducing-pathways-next-generation-ai-architecture/), [AutoGPT](https://github.com/Significant-Gravitas/Auto-GPT)|
 | [ChatGPT Plugin](examples/plugin) | A plugin looking up real time Bart schedule | |
+| [Deploy LLM on Replicate.com](examples/replicate_deploy/) | Running your own LLM | |
 | Semantic Search and Q&A Bots | 🚧 Under Construction | |
 
 ## Tools <a name="tools"></a>
