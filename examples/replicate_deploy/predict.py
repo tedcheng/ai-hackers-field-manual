@@ -26,8 +26,8 @@ class Predictor(BasePredictor):
             max_seq_len=2048
         )
         self.model.eval()
-        self.model.to(device)
-        print(f"Model loaded on {device}")
+        self.model.to(self.device)
+        print(f"Model loaded on {self.device}")
         self.tokenizer = transformers.AutoTokenizer.from_pretrained("EleutherAI/gpt-neox-20b")
 
     def predict(self, prompt: str = Input(description="Prompt")) -> str:
