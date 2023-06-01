@@ -59,10 +59,10 @@ def tensorize_model(
     serializer.close()
 
     # Write config to tensorized model weights directory
-    # dir_path = os.path.dirname(tensorizer_path)
-    # config_path = os.path.join(dir_path, 'config.json')
+    dir_path = os.path.dirname(tensorizer_path)
+    config_path = os.path.join(dir_path, 'config.json')
     model_config = model.config
-    model_config.save_pretrained(tensorizer_path)
+    model_config.save_pretrained(dir_path)
 
     logger.info(f"Tensorized model {model_name} in {dtype} and wrote tensors to {tensorizer_path} and config to {config_path}...")
 
@@ -78,14 +78,16 @@ if __name__ == "__main__":
     
     parser.add_argument("--model_name", type=str)
     parser.add_argument("--model_path", type=str, default=None)
-    parser.add_argument("--tensorizer_path", type=str, default=None)
     parser.add_argument("--dtype", type=str, default="fp32")
 
     args = parser.parse_args()
+    name = args.model_name.split("/")[-1]
+    
+    tensorizer_path = f"{args.model_path}/{name}.tensors"
 
     model_info = tensorize_model(
         args.model_name,
         model_path=args.model_path,
-        tensorizer_path=args.tensorizer_path,
+        tensorizer_path=tensorizer_path,
         dtype=args.dtype
     )
