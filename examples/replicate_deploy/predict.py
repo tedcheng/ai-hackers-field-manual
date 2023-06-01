@@ -12,9 +12,14 @@ from tensorizer.utils import no_init_or_tensor, convert_bytes, get_mem_usage
 class Predictor(BasePredictor):
     def setup(self):
         device = f'cuda:{cuda.current_device()}' if cuda.is_available() else 'cpu'
+        local_model_path = "model"
+        model = 'mosaicml/mpt-7b-instruct'
 
+        if os.path.exists(local_model_path) and os.path.isdir(local_model_path):
+            model = local_model_path
+        
         self.model = transformers.AutoModelForCausalLM.from_pretrained(
-            'mosaicml/mpt-7b-instruct',
+            model,
             trust_remote_code=True,
             torch_dtype=bfloat16,
             max_seq_len=2048
