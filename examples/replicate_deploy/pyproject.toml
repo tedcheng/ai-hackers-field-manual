@@ -4,7 +4,6 @@ version = "0.1.0"
 description = ""
 authors = ["Ted Cheng <yiqun.cheng@gmail.com>"]
 readme = "README.md"
-packages = [{include = "replicate_deploy"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
