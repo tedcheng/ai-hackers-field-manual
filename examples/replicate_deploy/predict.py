@@ -32,7 +32,7 @@ class Predictor(BasePredictor):
 
     def predict(self, prompt: str = Input(description="Prompt")) -> str:
         # mtp-7b is trained to add "<|endoftext|>" at the end of generations
-        stop_token_ids = tokenizer.convert_tokens_to_ids(["<|endoftext|>"])
+        stop_token_ids = self.tokenizer.convert_tokens_to_ids(["<|endoftext|>"])
         # define custom stopping criteria object
         class StopOnTokens(StoppingCriteria):
             def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor, **kwargs) -> bool:
