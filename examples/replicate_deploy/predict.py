@@ -12,7 +12,7 @@ from tensorizer.utils import no_init_or_tensor, convert_bytes, get_mem_usage
 
 class Predictor(BasePredictor):
     def setup(self):
-        device = f'cuda:{cuda.current_device()}' if cuda.is_available() else 'cpu'
+        self.device = f'cuda:{cuda.current_device()}' if cuda.is_available() else 'cpu'
         local_model_path = "model"
         model = 'mosaicml/mpt-7b-instruct'
 
@@ -45,7 +45,7 @@ class Predictor(BasePredictor):
         generate_text = transformers.pipeline(
             model=self.model, tokenizer=self.tokenizer,
             task='text-generation',
-            device=device,
+            device=self.device,
             # we pass model parameters here too
             stopping_criteria=stopping_criteria,  # without this model will ramble
             temperature=0.1,  # 'randomness' of outputs, 0.0 is the min and 1.0 the max
