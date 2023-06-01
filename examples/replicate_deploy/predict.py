@@ -5,6 +5,7 @@ from cog import BasePredictor, Input, Path
 from torch import cuda, bfloat16
 import transformers
 import torch
+import os
 from transformers import StoppingCriteria, StoppingCriteriaList
 from tensorizer import TensorDeserializer
 from tensorizer.utils import no_init_or_tensor, convert_bytes, get_mem_usage
