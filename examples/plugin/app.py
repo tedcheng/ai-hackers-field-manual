@@ -17,8 +17,7 @@ ai_plugin_data = {
         "is_user_authenticated": False
     },
     "logo_url": "https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/0016/4231/brand.gif?itok=cOeuUIp-",
-    "contact_email": "support@example.com",
-    "legal_info_url": "http://www.example.com/legal"
+    "contact_email": "yiqun.cheng@gmail.com"
 }
 
 openapi_yaml_content = """
