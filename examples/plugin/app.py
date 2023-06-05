@@ -4,10 +4,10 @@ import requests
 
 ai_plugin_data = {
     "schema_version": "v1",
-    "name_for_human": "BART Real-Time Plugin",
+    "name_for_human": "BART Real-Time",
     "name_for_model": "bart_realtime",
-    "description_for_human": "Plugin for getting real-time BART information for a specified origination station and direction.",
-    "description_for_model": "Plugin for getting real-time BART information for a specified origination station and direction.",
+    "description_for_human": "Getting real-time BART information for a specified origination station and direction.",
+    "description_for_model": "Getting real-time BART information for a specified origination station and direction.",
     "auth": {
         "type": "none"
     },
@@ -24,7 +24,7 @@ openapi_yaml_content = """
 openapi: 3.0.1
 info:
   title: BART Real-Time Plugin
-  description: A plugin that allows the user to get real-time BART information for a specified origination station and direction using ChatGPT.
+  description: Allows the user to get real-time BART information for a specified origination station and direction.
   version: 'v1'
 servers:
   - url: https://bart-plugin.onrender.com
