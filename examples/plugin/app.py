@@ -24,7 +24,7 @@ ai_plugin_data = {
 openapi_yaml_content = """
 openapi: 3.0.1
 info:
-  title: BART Real-Time Plugin
+  title: BART Real-Time
   description: Allows the user to get real-time BART information for a specified origination station and direction.
   version: 'v1'
 servers:
