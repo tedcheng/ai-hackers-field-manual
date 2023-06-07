@@ -17,7 +17,8 @@ ai_plugin_data = {
         "is_user_authenticated": False
     },
     "logo_url": "https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/0016/4231/brand.gif?itok=cOeuUIp-",
-    "contact_email": "yiqun.cheng@gmail.com"
+    "contact_email": "yiqun.cheng@gmail.com",
+    "legal_info_url": "https://bart-plugin.onrender.com/legal"
 }
 
 openapi_yaml_content = """
@@ -59,6 +60,30 @@ paths:
                     description: The JSON response from the BART real-time API containing real-time BART information.
 """
 
+legal_terms = """
+API Terms of Use
+
+Acceptance of Terms: By using our API, you agree to these terms of use. If you do not agree to these terms, you may not use the API.
+
+License: Subject to your compliance with these terms, we grant you a limited, non-exclusive, non-transferable license to use the API for the purpose of developing, testing, and supporting your application.
+
+Restrictions: You may not use the API in a way that could harm our services or negatively affect other users. You may not use the API to create a similar or competitive service.
+
+Privacy: You must respect the privacy of users. You must not collect, store, or share sensitive information without the user's consent.
+
+Intellectual Property: We retain all rights to the API. Using the API does not give you ownership of any intellectual property rights in the API or the content accessed through the API.
+
+Termination: We may terminate or suspend your access to the API at any time, for any reason, and without notice.
+
+Disclaimer of Warranties: The API is provided "as is" without warranty of any kind. We disclaim all warranties, whether express or implied, including implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+
+Limitation of Liability: To the extent permitted by law, we will not be liable for any direct, indirect, incidental, special, consequential, or exemplary damages arising out of or in connection with your use of the API.
+
+Changes to Terms: We may modify these terms at any time. It's your responsibility to regularly review these terms.
+
+Governing Law: These terms are governed by the laws of California without regard to conflict of law principles.
+"""
+
 app = Flask(__name__)
 CORS(app, origins=["http://127.0.0.1:4444", "https://chat.openai.com"])
 
@@ -95,6 +120,10 @@ def ai_plugin_json():
 @app.route('/openapi.yaml')
 def openapi_yaml():
     return Response(openapi_yaml_content, mimetype='application/x-yaml')
+
+@app.route('/legal')
+def legal():
+    return legal_terms
 
 if __name__ == '__main__':
     app.run(port=4444)
