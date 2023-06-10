@@ -85,6 +85,7 @@ Governing Law: These terms are governed by the laws of California without regard
 """
 
 app = Flask(__name__)
+app.logger.setLevel(logging.INFO)
 CORS(app, origins=["http://127.0.0.1:4444", "https://chat.openai.com"])
 
 @app.route('/bart/realtime')
