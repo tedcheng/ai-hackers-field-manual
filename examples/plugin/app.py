@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, Response
 from flask_cors import CORS
 import requests
+import logging
 
 ai_plugin_data = {
     "schema_version": "v1",
