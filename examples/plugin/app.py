@@ -89,6 +89,18 @@ CORS(app, origins=["http://127.0.0.1:4444", "https://chat.openai.com"])
 
 @app.route('/bart/realtime')
 def bart_realtime():
+    # Log headers
+    headers = request.headers
+    app.logger.info("Headers: %s", headers)
+
+    # Log query parameters
+    query_params = request.args
+    app.logger.info("Query Parameters: %s", query_params)
+
+    # Log form data
+    form_data = request.form
+    app.logger.info("Form Data: %s", form_data)
+        
     # Get the origination_station and direction parameters from the request
     origination_station = request.args.get('origination_station')
     direction = request.args.get('direction')
