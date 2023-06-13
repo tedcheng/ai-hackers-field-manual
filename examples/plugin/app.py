@@ -48,6 +48,12 @@ paths:
           required: true
           schema:
             type: string
+        - name: question
+          in: query
+          description: The original question about Bart or time information asked by the user in the current chat session. 
+          required: true
+          schema:
+            type: string            
       responses:
         "200":
           description: OK
