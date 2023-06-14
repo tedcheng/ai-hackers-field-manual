@@ -8,6 +8,7 @@ import uuid
 from datetime import datetime
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.dialects.postgresql import JSONB
+from flask_migrate import Migrate
 
 ai_plugin_data = {
     "schema_version": "v1",
@@ -107,6 +108,7 @@ if os.getenv('DATABASE_URI') is not None:
 app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 class Log(db.Model):
     id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
