@@ -6,3 +6,4 @@ youtube-transcript-api
 SQLAlchemy
 Flask-SQLAlchemy
 psycopg2
+Flask-Migrate
