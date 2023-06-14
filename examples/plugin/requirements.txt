@@ -3,3 +3,4 @@ requests
 flask_cors
 gunicorn
 youtube-transcript-api
+SQLAlchemy
