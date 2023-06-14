@@ -5,3 +5,4 @@ gunicorn
 youtube-transcript-api
 SQLAlchemy
 Flask-SQLAlchemy
+psycopg2

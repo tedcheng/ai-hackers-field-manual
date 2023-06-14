@@ -2,7 +2,12 @@ from flask import Flask, jsonify, request, Response
 from flask_cors import CORS
 import requests
 import logging
+import os
 from flask_sqlalchemy import SQLAlchemy
+import uuid
+from datetime import datetime
+from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.dialects.postgresql import JSONB
 
 ai_plugin_data = {
     "schema_version": "v1",
@@ -94,7 +99,41 @@ Governing Law: These terms are governed by the laws of California without regard
 
 app = Flask(__name__)
 app.logger.setLevel(logging.INFO)
-CORS(app, origins=["http://127.0.0.1:4444", "https://chat.openai.com"])
+
+db_uri = 'postgresql://bart@localhost/bart'
+if os.getenv('DATABASE_URI') is not None:
+    db_uri = os.getenv('DATABASE_URI')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+class Log(db.Model):
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    params = db.Column(JSONB)
+    headers = db.Column(JSONB)
+    openai_ephemeral_user_id = db.Column(db.String(255))
+    openai_conversation_id = db.Column(db.String(255))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    def __repr__(self):
+        return f"<Log id={self.id}, params={self.params}, headers={self.headers}, openai_user_id={self.openai_user_id}, openai_conversation_id={self.openai_conversation_id}, created_at={self.created_at}, updated_at={self.updated_at}>"
+    
+    @classmethod
+    def create_log(cls, data):
+        timestamp = datetime.utcnow()
+        log = cls(data=data, created_at=timestamp, updated_at=timestamp)
+        db.session.add(log)
+        db.session.commit()
+        return log
+
+    def save(self):
+        self.updated_at = datetime.utcnow()
+        if not self.created_at:
+            self.created_at = self.updated_at
+        db.session.add(self)
+        db.session.commit()
 
 @app.route('/bart/realtime')
 def bart_realtime():
