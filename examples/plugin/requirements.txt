@@ -4,3 +4,4 @@ flask_cors
 gunicorn
 youtube-transcript-api
 SQLAlchemy
+Flask-SQLAlchemy
