@@ -101,7 +101,7 @@ Governing Law: These terms are governed by the laws of California without regard
 app = Flask(__name__)
 app.logger.setLevel(logging.INFO)
 
-db_uri = 'postgresql://bart@localhost/bart'
+db_uri = 'postgresql://bart_n6dc_user@localhost/bart_n6dc'
 if os.getenv('DATABASE_URI') is not None:
     db_uri = os.getenv('DATABASE_URI')
 
