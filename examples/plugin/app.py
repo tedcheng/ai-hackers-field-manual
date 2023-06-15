@@ -9,6 +9,7 @@ from datetime import datetime
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.dialects.postgresql import JSONB
 from flask_migrate import Migrate
+import json
 
 ai_plugin_data = {
     "schema_version": "v1",
@@ -123,9 +124,9 @@ class Log(db.Model):
         return f"<Log id={self.id}, params={self.params}, headers={self.headers}, openai_user_id={self.openai_user_id}, openai_conversation_id={self.openai_conversation_id}, created_at={self.created_at}, updated_at={self.updated_at}>"
     
     @classmethod
-    def create_log(cls, data):
+    def create_log(cls, params, headers, openai_ephemeral_user_id, openai_conversation_id):
         timestamp = datetime.utcnow()
-        log = cls(data=data, created_at=timestamp, updated_at=timestamp)
+        log = cls(created_at=timestamp, updated_at=timestamp, id=uuid.uuid4(), params=params, headers=headers, openai_ephemeral_user_id=openai_ephemeral_user_id, openai_conversation_id=openai_conversation_id)
         db.session.add(log)
         db.session.commit()
         return log
@@ -150,6 +151,8 @@ def bart_realtime():
     # Log form data
     form_data = request.form
     app.logger.info("Form Data: %s", form_data)
+
+    Log.create_log(params=json.dumps(query_params), headers=json.dumps(dict(headers)), openai_ephemeral_user_id=dict(headers).get('openai_ephemeral_user_id'), openai_conversation_id=dict(headers).get('openai_conversation_id'))
         
     # Get the origination_station and direction parameters from the request
     origination_station = request.args.get('origination_station')
