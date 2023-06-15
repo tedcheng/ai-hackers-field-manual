@@ -152,7 +152,7 @@ def bart_realtime():
     form_data = request.form
     app.logger.info("Form Data: %s", form_data)
 
-    Log.create_log(params=json.dumps(query_params), headers=json.dumps(dict(headers)), openai_ephemeral_user_id=dict(headers).get('openai_ephemeral_user_id'), openai_conversation_id=dict(headers).get('openai_conversation_id'))
+    Log.create_log(params=json.dumps(query_params), headers=json.dumps(dict(headers)), openai_ephemeral_user_id=dict(headers).get('Openai-Ephemeral-User-Id'), openai_conversation_id=dict(headers).get('Openai-Conversation-Id'))
         
     # Get the origination_station and direction parameters from the request
     origination_station = request.args.get('origination_station')
